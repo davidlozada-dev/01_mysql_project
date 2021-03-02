@@ -21,7 +21,7 @@ USE `01_mysql_project`;
 DELIMITER //
 CREATE PROCEDURE `01_delete_audit`(IN affectedTable varchar(60))
 BEGIN
-INSERT INTO audit VALUES (CURRENT_USER(), CURRENT_TIMESTAMP(), affectedTable, 'delete');
+INSERT INTO audit VALUES (CURRENT_USER(), CURRENT_TIMESTAMP(), affectedTable, 'DELETE');
 END//
 DELIMITER ;
 
@@ -37,7 +37,7 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE `01_update_audit`(IN affectedTable varchar(60))
 BEGIN
-INSERT INTO audit VALUES (CURRENT_USER(), CURRENT_TIMESTAMP(), affectedTable, 'update');
+INSERT INTO audit VALUES (CURRENT_USER(), CURRENT_TIMESTAMP(), affectedTable, 'UPDATE');
 END//
 DELIMITER ;
 
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `audit` (
   `user` varchar(60) NOT NULL,
   `dateAndTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `affectedTable` varchar(60) NOT NULL,
-  `eventType` enum('INSERT','update','delete') NOT NULL
+  `eventType` enum('INSERT','UPDATE','DELETE') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping data for table 01_mysql_project.audit: ~0 rows (approximately)
@@ -324,7 +324,7 @@ CREATE TABLE IF NOT EXISTS `products_temporary` (
   `ID_pro` int(10) DEFAULT NULL,
   `date_temp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `unitAvailability_pro` int(10) DEFAULT NULL,
-  `event_temp` enum('INSERT','update') DEFAULT NULL
+  `event_temp` enum('INSERT','UPDATE') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping data for table 01_mysql_project.products_temporary: ~0 rows (approximately)
@@ -414,276 +414,276 @@ CREATE TABLE IF NOT EXISTS `suppliers_backup` (
 /*!40000 ALTER TABLE `suppliers_backup` DISABLE KEYS */;
 /*!40000 ALTER TABLE `suppliers_backup` ENABLE KEYS */;
 
--- Dumping structure for trigger 01_mysql_project.01_delete_trigger_on_categories
+-- Dumping structure for TRIGGER 01_mysql_project.01_delete_trigger_on_categories
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 01_delete_trigger_on_categories before delete ON categories for each row BEGIN call 01_delete_audit('categories'); END//
+CREATE TRIGGER 01_delete_trigger_on_categories BEFORE DELETE ON categories FOR EACH ROW BEGIN CALL 01_delete_audit('categories'); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.01_delete_trigger_on_clients
+-- Dumping structure for TRIGGER 01_mysql_project.01_delete_trigger_on_clients
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 01_delete_trigger_on_clients before delete ON clients for each row BEGIN call 01_delete_audit('clients'); END//
+CREATE TRIGGER 01_delete_trigger_on_clients BEFORE DELETE ON clients FOR EACH ROW BEGIN CALL 01_delete_audit('clients'); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.01_delete_trigger_on_employees
+-- Dumping structure for TRIGGER 01_mysql_project.01_delete_trigger_on_employees
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 01_delete_trigger_on_employees before delete ON employees for each row BEGIN call 01_delete_audit('employees'); END//
+CREATE TRIGGER 01_delete_trigger_on_employees BEFORE DELETE ON employees FOR EACH ROW BEGIN CALL 01_delete_audit('employees'); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.01_delete_trigger_on_orders
+-- Dumping structure for TRIGGER 01_mysql_project.01_delete_trigger_on_orders
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 01_delete_trigger_on_orders before delete ON orders for each row BEGIN call 01_delete_audit('orders'); END//
+CREATE TRIGGER 01_delete_trigger_on_orders BEFORE DELETE ON orders FOR EACH ROW BEGIN CALL 01_delete_audit('orders'); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.01_delete_trigger_on_products
+-- Dumping structure for TRIGGER 01_mysql_project.01_delete_trigger_on_products
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 01_delete_trigger_on_products before delete ON products for each row BEGIN call 01_delete_audit('products'); END//
+CREATE TRIGGER 01_delete_trigger_on_products BEFORE DELETE ON products FOR EACH ROW BEGIN CALL 01_delete_audit('products'); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.01_delete_trigger_on_shippingcompanies
+-- Dumping structure for TRIGGER 01_mysql_project.01_delete_trigger_on_shippingcompanies
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 01_delete_trigger_on_shippingcompanies before delete ON shippingcompanies for each row BEGIN call 01_delete_audit('shippingcompanies'); END//
+CREATE TRIGGER 01_delete_trigger_on_shippingcompanies BEFORE DELETE ON shippingcompanies FOR EACH ROW BEGIN CALL 01_delete_audit('shippingcompanies'); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.01_delete_trigger_on_suppliers
+-- Dumping structure for TRIGGER 01_mysql_project.01_delete_trigger_on_suppliers
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 01_delete_trigger_on_suppliers before delete ON suppliers for each row BEGIN call 01_delete_audit('suppliers'); END//
+CREATE TRIGGER 01_delete_trigger_on_suppliers BEFORE DELETE ON suppliers FOR EACH ROW BEGIN CALL 01_delete_audit('suppliers'); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.01_insert_trigger_on_categories
+-- Dumping structure for TRIGGER 01_mysql_project.01_insert_trigger_on_categories
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 01_insert_trigger_on_categories before INSERT ON categories for each row BEGIN call 01_insert_audit('categories'); END//
+CREATE TRIGGER 01_insert_trigger_on_categories BEFORE INSERT ON categories FOR EACH ROW BEGIN CALL 01_insert_audit('categories'); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.01_insert_trigger_on_clients
+-- Dumping structure for TRIGGER 01_mysql_project.01_insert_trigger_on_clients
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 01_insert_trigger_on_clients before INSERT ON clients for each row BEGIN call 01_insert_audit('clients'); END//
+CREATE TRIGGER 01_insert_trigger_on_clients BEFORE INSERT ON clients FOR EACH ROW BEGIN CALL 01_insert_audit('clients'); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.01_insert_trigger_on_employees
+-- Dumping structure for TRIGGER 01_mysql_project.01_insert_trigger_on_employees
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 01_insert_trigger_on_employees before INSERT ON employees for each row BEGIN call 01_insert_audit('employees'); END//
+CREATE TRIGGER 01_insert_trigger_on_employees BEFORE INSERT ON employees FOR EACH ROW BEGIN CALL 01_insert_audit('employees'); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.01_insert_trigger_on_orders
+-- Dumping structure for TRIGGER 01_mysql_project.01_insert_trigger_on_orders
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 01_insert_trigger_on_orders before INSERT ON orders for each row BEGIN call 01_insert_audit('orders'); END//
+CREATE TRIGGER 01_insert_trigger_on_orders BEFORE INSERT ON orders FOR EACH ROW BEGIN CALL 01_insert_audit('orders'); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.01_insert_trigger_on_products
+-- Dumping structure for TRIGGER 01_mysql_project.01_insert_trigger_on_products
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 01_insert_trigger_on_products before INSERT ON products for each row BEGIN call 01_insert_audit('products'); END//
+CREATE TRIGGER 01_insert_trigger_on_products BEFORE INSERT ON products FOR EACH ROW BEGIN CALL 01_insert_audit('products'); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.01_insert_trigger_on_shippingcompanies
+-- Dumping structure for TRIGGER 01_mysql_project.01_insert_trigger_on_shippingcompanies
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 01_insert_trigger_on_shippingcompanies before INSERT ON shippingcompanies for each row BEGIN call 01_insert_audit('shippingcompanies'); END//
+CREATE TRIGGER 01_insert_trigger_on_shippingcompanies BEFORE INSERT ON shippingcompanies FOR EACH ROW BEGIN CALL 01_insert_audit('shippingcompanies'); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.01_insert_trigger_on_suppliers
+-- Dumping structure for TRIGGER 01_mysql_project.01_insert_trigger_on_suppliers
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 01_insert_trigger_on_suppliers before INSERT ON suppliers for each row BEGIN call 01_insert_audit('suppliers'); END//
+CREATE TRIGGER 01_insert_trigger_on_suppliers BEFORE INSERT ON suppliers FOR EACH ROW BEGIN CALL 01_insert_audit('suppliers'); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.01_update_trigger_on_categories
+-- Dumping structure for TRIGGER 01_mysql_project.01_update_trigger_on_categories
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 01_update_trigger_on_categories before update ON categories for each row BEGIN call 01_update_audit('categories'); END//
+CREATE TRIGGER 01_update_trigger_on_categories BEFORE UPDATE ON categories FOR EACH ROW BEGIN CALL 01_update_audit('categories'); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.01_update_trigger_on_clients
+-- Dumping structure for TRIGGER 01_mysql_project.01_update_trigger_on_clients
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 01_update_trigger_on_clients before update ON clients for each row BEGIN call 01_update_audit('clients'); END//
+CREATE TRIGGER 01_update_trigger_on_clients BEFORE UPDATE ON clients FOR EACH ROW BEGIN CALL 01_update_audit('clients'); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.01_update_trigger_on_employees
+-- Dumping structure for TRIGGER 01_mysql_project.01_update_trigger_on_employees
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 01_update_trigger_on_employees before update ON employees for each row BEGIN call 01_update_audit('employees'); END//
+CREATE TRIGGER 01_update_trigger_on_employees BEFORE UPDATE ON employees FOR EACH ROW BEGIN CALL 01_update_audit('employees'); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.01_update_trigger_on_orders
+-- Dumping structure for TRIGGER 01_mysql_project.01_update_trigger_on_orders
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 01_update_trigger_on_orders before update ON orders for each row BEGIN call 01_update_audit('orders'); END//
+CREATE TRIGGER 01_update_trigger_on_orders BEFORE UPDATE ON orders FOR EACH ROW BEGIN CALL 01_update_audit('orders'); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.01_update_trigger_on_products
+-- Dumping structure for TRIGGER 01_mysql_project.01_update_trigger_on_products
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 01_update_trigger_on_products before update ON products for each row BEGIN call 01_update_audit('products'); END//
+CREATE TRIGGER 01_update_trigger_on_products BEFORE UPDATE ON products FOR EACH ROW BEGIN CALL 01_update_audit('products'); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.01_update_trigger_on_shippingcompanies
+-- Dumping structure for TRIGGER 01_mysql_project.01_update_trigger_on_shippingcompanies
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 01_update_trigger_on_shippingcompanies before update ON shippingcompanies for each row BEGIN call 01_update_audit('shippingcompanies'); END//
+CREATE TRIGGER 01_update_trigger_on_shippingcompanies BEFORE UPDATE ON shippingcompanies FOR EACH ROW BEGIN CALL 01_update_audit('shippingcompanies'); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.01_update_trigger_on_suppliers
+-- Dumping structure for TRIGGER 01_mysql_project.01_update_trigger_on_suppliers
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 01_update_trigger_on_suppliers before update ON suppliers for each row BEGIN call 01_update_audit('suppliers'); END//
+CREATE TRIGGER 01_update_trigger_on_suppliers BEFORE UPDATE ON suppliers FOR EACH ROW BEGIN CALL 01_update_audit('suppliers'); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.02_stop_delete_on_categories
+-- Dumping structure for TRIGGER 01_mysql_project.02_stop_delete_on_categories
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 02_stop_delete_on_categories before delete ON categories for each row BEGIN SET @children = (SELECT COUNT(ID_cat) FROM products WHERE ID_cat = OLD.ID_cat); IF @children > 0 THEN signal sqlstate '45000' SET message_text = 'delete action cancelled'; END IF; END//
+CREATE TRIGGER 02_stop_delete_on_categories BEFORE DELETE ON categories FOR EACH ROW BEGIN SET @children = (SELECT COUNT(ID_cat) FROM products WHERE ID_cat = OLD.ID_cat); IF @children > 0 THEN signal sqlstate '45000' SET message_text = 'DELETE action cancelled'; END IF; END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.02_stop_delete_on_clients
+-- Dumping structure for TRIGGER 01_mysql_project.02_stop_delete_on_clients
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE TRIGGER `02_stop_delete_on_clients` BEFORE DELETE ON `clients` FOR EACH ROW BEGIN SET @children = (SELECT COUNT(ID_cli) FROM orders WHERE ID_cli = OLD.ID_cli); IF @children > 0 THEN signal sqlstate '45000' SET message_text = 'delete action cancelled'; END IF; END//
+CREATE TRIGGER `02_stop_delete_on_clients` BEFORE DELETE ON `clients` FOR EACH ROW BEGIN SET @children = (SELECT COUNT(ID_cli) FROM orders WHERE ID_cli = OLD.ID_cli); IF @children > 0 THEN signal sqlstate '45000' SET message_text = 'DELETE action cancelled'; END IF; END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.02_stop_delete_on_employees
+-- Dumping structure for TRIGGER 01_mysql_project.02_stop_delete_on_employees
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE TRIGGER `02_stop_delete_on_employees` BEFORE DELETE ON `employees` FOR EACH ROW BEGIN SET @children = (SELECT COUNT(ID_emp) FROM orders WHERE ID_emp = OLD.ID_emp); IF @children > 0 THEN signal sqlstate '45000' SET message_text = 'delete action cancelled'; END IF; END//
+CREATE TRIGGER `02_stop_delete_on_employees` BEFORE DELETE ON `employees` FOR EACH ROW BEGIN SET @children = (SELECT COUNT(ID_emp) FROM orders WHERE ID_emp = OLD.ID_emp); IF @children > 0 THEN signal sqlstate '45000' SET message_text = 'DELETE action cancelled'; END IF; END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.02_stop_delete_on_orders
+-- Dumping structure for TRIGGER 01_mysql_project.02_stop_delete_on_orders
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE TRIGGER `02_stop_delete_on_orders` BEFORE DELETE ON `orders` FOR EACH ROW BEGIN SET @children = (SELECT COUNT(ID_ord) FROM orderdetails WHERE ID_ord = OLD.ID_ord); IF @children > 0 THEN signal sqlstate '45000' SET message_text = 'delete action cancelled'; END IF; END//
+CREATE TRIGGER `02_stop_delete_on_orders` BEFORE DELETE ON `orders` FOR EACH ROW BEGIN SET @children = (SELECT COUNT(ID_ord) FROM orderdetails WHERE ID_ord = OLD.ID_ord); IF @children > 0 THEN signal sqlstate '45000' SET message_text = 'DELETE action cancelled'; END IF; END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.02_stop_delete_on_products
+-- Dumping structure for TRIGGER 01_mysql_project.02_stop_delete_on_products
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE TRIGGER `02_stop_delete_on_products` BEFORE DELETE ON `products` FOR EACH ROW BEGIN SET @children = (SELECT COUNT(ID_pro) FROM orderdetails WHERE ID_pro = OLD.ID_pro); IF @children > 0 THEN signal sqlstate '45000' SET message_text = 'delete action cancelled'; END IF; END//
+CREATE TRIGGER `02_stop_delete_on_products` BEFORE DELETE ON `products` FOR EACH ROW BEGIN SET @children = (SELECT COUNT(ID_pro) FROM orderdetails WHERE ID_pro = OLD.ID_pro); IF @children > 0 THEN signal sqlstate '45000' SET message_text = 'DELETE action cancelled'; END IF; END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.02_stop_delete_on_shippingcompanies
+-- Dumping structure for TRIGGER 01_mysql_project.02_stop_delete_on_shippingcompanies
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE TRIGGER `02_stop_delete_on_shippingcompanies` BEFORE DELETE ON `shippingcompanies` FOR EACH ROW BEGIN SET @children = (SELECT COUNT(ID_shi) FROM orders WHERE ID_shi = OLD.ID_shi); IF @children > 0 THEN signal sqlstate '45000' SET message_text = 'delete action cancelled'; END IF; END//
+CREATE TRIGGER `02_stop_delete_on_shippingcompanies` BEFORE DELETE ON `shippingcompanies` FOR EACH ROW BEGIN SET @children = (SELECT COUNT(ID_shi) FROM orders WHERE ID_shi = OLD.ID_shi); IF @children > 0 THEN signal sqlstate '45000' SET message_text = 'DELETE action cancelled'; END IF; END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.02_stop_delete_on_suppliers
+-- Dumping structure for TRIGGER 01_mysql_project.02_stop_delete_on_suppliers
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE TRIGGER `02_stop_delete_on_suppliers` BEFORE DELETE ON `suppliers` FOR EACH ROW BEGIN SET @children = (SELECT COUNT(ID_sup) FROM products WHERE ID_sup = OLD.ID_sup); IF @children > 0 THEN signal sqlstate '45000' SET message_text = 'delete action cancelled'; END IF; END//
+CREATE TRIGGER `02_stop_delete_on_suppliers` BEFORE DELETE ON `suppliers` FOR EACH ROW BEGIN SET @children = (SELECT COUNT(ID_sup) FROM products WHERE ID_sup = OLD.ID_sup); IF @children > 0 THEN signal sqlstate '45000' SET message_text = 'DELETE action cancelled'; END IF; END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.03_backup_trigger_on_categories
+-- Dumping structure for TRIGGER 01_mysql_project.03_backup_trigger_on_categories
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 03_backup_trigger_on_categories before delete ON categories for each row BEGIN INSERT INTO categories_backup VALUES(old.ID_cat, old.name_cat, old.description_cat, old.image_cat); END//
+CREATE TRIGGER 03_backup_trigger_on_categories BEFORE DELETE ON categories FOR EACH ROW BEGIN INSERT INTO categories_backup VALUES(old.ID_cat, old.name_cat, old.description_cat, old.image_cat); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.03_backup_trigger_on_clients
+-- Dumping structure for TRIGGER 01_mysql_project.03_backup_trigger_on_clients
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 03_backup_trigger_on_clients before delete ON clients for each row BEGIN INSERT INTO clients_backup VALUES(old.ID_cli, old.companyName_cli, old.contactName_cli, old.contactCharge_cli, old.address_cli, old.city_cli, old.region_cli, old.postalCode_cli, old.country_cli, old.phoneNumber_cli, old.fax_cli); END//
+CREATE TRIGGER 03_backup_trigger_on_clients BEFORE DELETE ON clients FOR EACH ROW BEGIN INSERT INTO clients_backup VALUES(old.ID_cli, old.companyName_cli, old.contactName_cli, old.contactCharge_cli, old.address_cli, old.city_cli, old.region_cli, old.postalCode_cli, old.country_cli, old.phoneNumber_cli, old.fax_cli); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.03_backup_trigger_on_employees
+-- Dumping structure for TRIGGER 01_mysql_project.03_backup_trigger_on_employees
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 03_backup_trigger_on_employees before delete ON employees for each row BEGIN INSERT INTO employees_backup VALUES(old.ID_emp, old.lastName_emp, old.name_emp, old.charge_emp, old.title_emp, old.dateOfBirth_emp, old.dateOfHiring_emp, old.address_emp, old.city_emp, old.region_emp, old.postalCode_emp, old.country_emp, old.phoneNumber_emp, old.extensionNumber_emp, old.photo_emp, old.note_emp, old.supervisor_emp); END//
+CREATE TRIGGER 03_backup_trigger_on_employees BEFORE DELETE ON employees FOR EACH ROW BEGIN INSERT INTO employees_backup VALUES(old.ID_emp, old.lastName_emp, old.name_emp, old.charge_emp, old.title_emp, old.dateOfBirth_emp, old.dateOfHiring_emp, old.address_emp, old.city_emp, old.region_emp, old.postalCode_emp, old.country_emp, old.phoneNumber_emp, old.extensionNumber_emp, old.photo_emp, old.note_emp, old.supervisor_emp); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.03_backup_trigger_on_orders
+-- Dumping structure for TRIGGER 01_mysql_project.03_backup_trigger_on_orders
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 03_backup_trigger_on_orders before delete ON orders for each row BEGIN INSERT INTO orders_backup VALUES(old.ID_ord, old.ID_cli, old.ID_emp, old.orderDate_ord, old.arrivalDate_ord, old.departureDate_ord, old.ID_shi, old.charge_ord, old.clientName_ord, old.clientAddress_ord, old.clientCity_ord, old.clientRegion_ord, old.clientPostalCode_ord, old.clientCountry_ord); END//
+CREATE TRIGGER 03_backup_trigger_on_orders BEFORE DELETE ON orders FOR EACH ROW BEGIN INSERT INTO orders_backup VALUES(old.ID_ord, old.ID_cli, old.ID_emp, old.orderDate_ord, old.arrivalDate_ord, old.departureDate_ord, old.ID_shi, old.charge_ord, old.clientName_ord, old.clientAddress_ord, old.clientCity_ord, old.clientRegion_ord, old.clientPostalCode_ord, old.clientCountry_ord); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.03_backup_trigger_on_products
+-- Dumping structure for TRIGGER 01_mysql_project.03_backup_trigger_on_products
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 03_backup_trigger_on_products before delete ON products for each row BEGIN INSERT INTO products_backup VALUES(old.ID_pro, old.name_pro, old.ID_sup, old.ID_cat, old.unit_pro, old.unitPrice_pro, old.unitAvailability_pro, old.unitOrder_pro, old.statusOrder_pro); END//
+CREATE TRIGGER 03_backup_trigger_on_products BEFORE DELETE ON products FOR EACH ROW BEGIN INSERT INTO products_backup VALUES(old.ID_pro, old.name_pro, old.ID_sup, old.ID_cat, old.unit_pro, old.unitPrice_pro, old.unitAvailability_pro, old.unitOrder_pro, old.statusOrder_pro); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.03_backup_trigger_on_shippingcompanies
+-- Dumping structure for TRIGGER 01_mysql_project.03_backup_trigger_on_shippingcompanies
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 03_backup_trigger_on_shippingcompanies before delete ON shippingcompanies for each row BEGIN INSERT INTO shippingcompanies_backup VALUES(old.ID_shi, old.name_shi, old.phoneNumber_shi); END//
+CREATE TRIGGER 03_backup_trigger_on_shippingcompanies BEFORE DELETE ON shippingcompanies FOR EACH ROW BEGIN INSERT INTO shippingcompanies_backup VALUES(old.ID_shi, old.name_shi, old.phoneNumber_shi); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.03_backup_trigger_on_suppliers
+-- Dumping structure for TRIGGER 01_mysql_project.03_backup_trigger_on_suppliers
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 03_backup_trigger_on_suppliers before delete ON suppliers for each row BEGIN INSERT INTO suppliers_backup VALUES(old.ID_sup, old.name_sup, old.contactName_sup, old.contactCharge_sup, old.address_sup, old.city_sup, old.region_sup, old.postalCode_sup, old.country_sup, old.phoneNumber_sup, old.fax_sup, old.webPage_sup); END//
+CREATE TRIGGER 03_backup_trigger_on_suppliers BEFORE DELETE ON suppliers FOR EACH ROW BEGIN INSERT INTO suppliers_backup VALUES(old.ID_sup, old.name_sup, old.contactName_sup, old.contactCharge_sup, old.address_sup, old.city_sup, old.region_sup, old.postalCode_sup, old.country_sup, old.phoneNumber_sup, old.fax_sup, old.webPage_sup); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.04_insert_new_unit_availability_trigger_on_orderdetails
+-- Dumping structure for TRIGGER 01_mysql_project.04_insert_new_unit_availability_trigger_on_orderdetails
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
 CREATE TRIGGER `04_insert_new_unit_availability_trigger_on_orderdetails` AFTER INSERT ON `orderdetails` FOR EACH ROW BEGIN UPDATE products SET products.unitAvailability_pro = products.unitAvailability_pro - NEW.quantity_det WHERE products.ID_pro = NEW.ID_pro; END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.04_insert_record_in_products_logs_trigger_on_orderdetails
+-- Dumping structure for TRIGGER 01_mysql_project.04_insert_record_in_products_logs_trigger_on_orderdetails
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE trigger 04_insert_record_in_products_logs_trigger_on_orderdetails before INSERT ON orderdetails for each row BEGIN INSERT INTO products_logs VALUES(new.ID_pro, new.unitPrice_pro, CURRENT_TIMESTAMP()); END//
+CREATE TRIGGER 04_insert_record_in_products_logs_trigger_on_orderdetails BEFORE INSERT ON orderdetails FOR EACH ROW BEGIN INSERT INTO products_logs VALUES(new.ID_pro, new.unitPrice_pro, CURRENT_TIMESTAMP()); END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.05_insert_trigger_on_products
+-- Dumping structure for TRIGGER 01_mysql_project.05_insert_trigger_on_products
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
 CREATE TRIGGER `05_insert_trigger_on_products` BEFORE INSERT ON `products` FOR EACH ROW BEGIN IF new.statusOrder_pro != 'inactive' THEN INSERT INTO products_temporary VALUES (new.ID_pro, CURRENT_TIMESTAMP(), new.unitAvailability_pro, 'INSERT'); END IF; END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for trigger 01_mysql_project.05_update_trigger_on_products
+-- Dumping structure for TRIGGER 01_mysql_project.05_update_trigger_on_products
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 DELIMITER //
-CREATE TRIGGER `05_update_trigger_on_products` BEFORE UPDATE ON `products` FOR EACH ROW BEGIN IF old.statusOrder_pro != 'inactive' THEN INSERT INTO products_temporary VALUES (old.ID_pro, CURRENT_TIMESTAMP(), old.unitAvailability_pro, 'update'); END IF; END//
+CREATE TRIGGER `05_update_trigger_on_products` BEFORE UPDATE ON `products` FOR EACH ROW BEGIN IF old.statusOrder_pro != 'inactive' THEN INSERT INTO products_temporary VALUES (old.ID_pro, CURRENT_TIMESTAMP(), old.unitAvailability_pro, 'UPDATE'); END IF; END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 

@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `clients_backup` (
 -- Dumping structure for procedure 01_mysql_project.different_products_finder
 DELIMITER //
 CREATE PROCEDURE `different_products_finder`()
-BEGIN SELECT distinct name_pro FROM products; END//
+BEGIN SELECT DISTINCT name_pro FROM products; END//
 DELIMITER ;
 
 -- Dumping structure for table 01_mysql_project.employees
@@ -177,19 +177,22 @@ CREATE TABLE IF NOT EXISTS `employees_backup` (
 -- Dumping structure for procedure 01_mysql_project.employees_finder_by_full_name
 DELIMITER //
 CREATE PROCEDURE `employees_finder_by_full_name`(IN name varchar(30), IN lastName varchar(30))
-BEGIN SELECT * FROM employees WHERE name_emp LIKE concat('%', name, '%') AND lastName_emp LIKE concat('%', lastName, '%'); END//
+BEGIN SELECT * FROM employees WHERE name_emp LIKE concat('%', name, '%') AND lastName_emp LIKE concat('%', lastName, '%'); 
+END//
 DELIMITER ;
 
 -- Dumping structure for procedure 01_mysql_project.employees_finder_by_last_name
 DELIMITER //
 CREATE PROCEDURE `employees_finder_by_last_name`(IN lastName varchar(30))
-BEGIN SELECT * FROM employees WHERE lastName_emp LIKE concat('%', lastName, '%'); END//
+BEGIN SELECT * FROM employees WHERE lastName_emp LIKE concat('%', lastName, '%'); 
+END//
 DELIMITER ;
 
 -- Dumping structure for procedure 01_mysql_project.employees_finder_by_name
 DELIMITER //
 CREATE PROCEDURE `employees_finder_by_name`(IN name varchar(30))
-BEGIN SELECT * FROM employees WHERE name_emp LIKE concat('%', name, '%'); END//
+BEGIN SELECT * FROM employees WHERE name_emp LIKE concat('%', name, '%'); 
+END//
 DELIMITER ;
 
 -- Dumping structure for table 01_mysql_project.orderdetails
@@ -305,7 +308,8 @@ CREATE TABLE IF NOT EXISTS `products_backup` (
 -- Dumping structure for procedure 01_mysql_project.products_between_given_prices
 DELIMITER //
 CREATE PROCEDURE `products_between_given_prices`(IN val1 decimal(22,2),IN val2 decimal(22,2))
-BEGIN SELECT * FROM products WHERE unitPrice_pro between val1 AND val2; END//
+BEGIN SELECT * FROM products WHERE unitPrice_pro between val1 AND val2; 
+END//
 DELIMITER ;
 
 -- Dumping structure for table 01_mysql_project.products_logs
@@ -357,20 +361,22 @@ CREATE TABLE IF NOT EXISTS `shippingcompanies_backup` (
 -- Dumping structure for procedure 01_mysql_project.show_all_suppliers_with_and_without_products_related
 DELIMITER //
 CREATE PROCEDURE `show_all_suppliers_with_and_without_products_related`()
-BEGIN SELECT distinct suppliers.ID_sup, name_sup FROM suppliers LEFT JOIN products ON suppliers.ID_sup = products.ID_sup;
+BEGIN SELECT DISTINCT suppliers.ID_sup, name_sup FROM suppliers LEFT JOIN products ON suppliers.ID_sup = products.ID_sup;
 END//
 DELIMITER ;
 
 -- Dumping structure for procedure 01_mysql_project.show_categories_with_products
 DELIMITER //
 CREATE PROCEDURE `show_categories_with_products`()
-BEGIN SELECT * FROM categories JOIN products ON categories.ID_cat = products.ID_cat; END//
+BEGIN SELECT * FROM categories INNER JOIN products ON categories.ID_cat = products.ID_cat; 
+END//
 DELIMITER ;
 
 -- Dumping structure for procedure 01_mysql_project.show_employees_by_country
 DELIMITER //
 CREATE PROCEDURE `show_employees_by_country`()
-BEGIN SELECT country_emp AS country, COUNT(ID_emp) AS numberOfEmployees FROM employees GROUP BY country_emp HAVING numberOfEmployees >= 5; END//
+BEGIN SELECT country_emp AS country, COUNT(ID_emp) AS numberOfEmployees FROM employees GROUP BY country_emp HAVING numberOfEmployees >= 5; 
+END//
 DELIMITER ; 
 
 -- Dumping structure for table 01_mysql_project.suppliers

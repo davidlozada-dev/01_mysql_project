@@ -14,7 +14,6 @@
 	
 	2.Triggers
 
-1. License & Copyright
 1. Contributors
 
 
@@ -205,6 +204,7 @@ DELIMITER ;
 #### show_employees_by_country
 
 The *show_employees_by_country* procedure selects the number of employees and groups them by country from the __employees table__ if there are at least 5 employees registered in that specific country.
+
 ```SQL
 DELIMITER //
 
@@ -218,3 +218,142 @@ DELIMITER ;
 ---
 
 ### 2.2 Triggers
+
+#### 01_delete_trigger_on_categories
+
+The *01_delete_trigger_on_categories* trigger is a type of trigger that calls the stored procedure *01_delete_audit* and gives to it a parameter which is the name of the table where the trigger is on, in current case it is on the __categories table__. Also, this trigger structure is applied on all parent tables which are *suppliers, categories, products, clients, employees, shippingcompanies* and *orders*.
+
+```SQL
+DELIMITER //
+
+CREATE TRIGGER 01_delete_trigger_on_categories BEFORE DELETE ON categories FOR EACH ROW BEGIN CALL 01_delete_audit('categories');
+END//
+
+DELIMITER ;
+```
+
+---
+#### 01_insert_trigger_on_categories
+
+The *01_insert_trigger_on_categories* trigger is a type of trigger that calls the stored procedure *01_insert_audit* and gives to it a parameter which is the name of the table where the trigger is on, in current case it is on the __categories table__. Also, this trigger structure is applied on all the parent tables which are *suppliers, categories, products, clients, employees, shippingcompanies* and *orders*.
+
+```SQL
+DELIMITER //
+
+CREATE TRIGGER 01_insert_trigger_on_categories BEFORE INSERT ON categories FOR EACH ROW BEGIN CALL 01_insert_audit('categories'); 
+END//
+
+DELIMITER ;
+```
+
+---
+
+#### 01_update_trigger_on_categories
+
+The *01_update_trigger_on_categories* trigger is a type of trigger that calls the stored procedure *01_update_audit* and gives to it a parameter which is the name of the table where the trigger is on, in current case it is on the __categories table__. Also, this trigger structure is applied on all the parent tables which are *suppliers, categories, products, clients, employees, shippingcompanies* and *orders*.
+
+```SQL
+DELIMITER //
+
+CREATE TRIGGER 01_update_trigger_on_categories BEFORE UPDATE ON categories FOR EACH ROW BEGIN CALL 01_update_audit('categories'); 
+END//
+
+DELIMITER ;
+```
+
+---
+
+#### 02_stop_delete_on_categories
+
+The *02_stop_delete_on_categories* trigger is a type of trigger that stops the 'delete' action of a record from a parent table whenever that record is linked to a child tables's record, in the current case the trigger is on the __categories table__. Also, this trigger structure is applied on all the parent tables which are *suppliers, categories, products, clients, employees, shippingcompanies* and *orders*.
+
+```SQL
+DELIMITER //
+
+CREATE TRIGGER 02_stop_delete_on_categories BEFORE DELETE ON categories FOR EACH ROW BEGIN SET @children = (SELECT COUNT(ID_cat) FROM products WHERE ID_cat = OLD.ID_cat); IF @children > 0 THEN signal sqlstate '45000' SET message_text = 'DELETE action cancelled'; END IF; 
+END//
+
+DELIMITER ;
+```
+
+---
+
+#### 03_backup_trigger_on_categories
+
+The *03_backup_trigger_on_categories* trigger is a type of trigger that backups the record that is being deleted from a table by inserting the data stored in the columns into another table (backup table) that has the same colum data types, in the current case the trigger is on the __categories table__. Also, this trigger structure is applied (modifying certain fields in order to adapt it to each table's requirements) on all the parent tables which are *suppliers, categories, products, clients, employees, shippingcompanies* and *orders*.
+
+```SQL
+DELIMITER //
+
+CREATE TRIGGER 03_backup_trigger_on_categories BEFORE DELETE ON categories FOR EACH ROW BEGIN INSERT INTO categories_backup VALUES(old.ID_cat, old.name_cat, old.description_cat, old.image_cat); 
+END//
+
+DELIMITER ;
+```
+
+---
+
+#### 04_insert_new_unit_availability_trigger_on_orderdetails
+
+The *04_insert_new_unit_availability_trigger_on_orderdetails* trigger is a type of trigger that updates the availability of a product after an order is taken.
+
+```SQL
+DELIMITER //
+
+CREATE TRIGGER `04_insert_new_unit_availability_trigger_on_orderdetails` AFTER INSERT ON `orderdetails` FOR EACH ROW BEGIN UPDATE products SET products.unitAvailability_pro = products.unitAvailability_pro - NEW.quantity_det WHERE products.ID_pro = NEW.ID_pro; 
+END//
+
+DELIMITER ;
+```
+
+---
+
+#### 04_insert_record_in_products_logs_trigger_on_orderdetails
+
+The *04_insert_record_in_products_logs_trigger_on_orderdetails* trigger is a type of trigger that keeps the track of the product logs after an order is taken.
+
+```SQL
+DELIMITER //
+
+CREATE TRIGGER 04_insert_record_in_products_logs_trigger_on_orderdetails BEFORE INSERT ON orderdetails FOR EACH ROW BEGIN INSERT INTO products_logs VALUES(new.ID_pro, new.unitPrice_pro, CURRENT_TIMESTAMP()); 
+END//
+
+DELIMITER ;
+```
+
+---
+
+#### 05_insert_trigger_on_products
+
+The *05_insert_trigger_on_products* trigger is a type of trigger that inserts into a temporary table data that is related to the 'insert' action on the __products table__ taken by an user.
+
+```SQL
+DELIMITER //
+
+CREATE TRIGGER `05_insert_trigger_on_products` BEFORE INSERT ON `products` FOR EACH ROW BEGIN IF new.statusOrder_pro != 'inactive' THEN INSERT INTO products_temporary VALUES (new.ID_pro, CURRENT_TIMESTAMP(), new.unitAvailability_pro, 'INSERT'); END IF; 
+END//
+
+DELIMITER ;
+```
+
+---
+
+#### 05_update_trigger_on_products
+
+The *05_update_trigger_on_products* trigger is a type of trigger that inserts into a temporary table data that is related to the 'update' action on the __products table__ taken by an user.
+
+
+```SQL
+DELIMITER //
+
+CREATE TRIGGER `05_update_trigger_on_products` BEFORE UPDATE ON `products` FOR EACH ROW BEGIN IF old.statusOrder_pro != 'inactive' THEN INSERT INTO products_temporary VALUES (old.ID_pro, CURRENT_TIMESTAMP(), old.unitAvailability_pro, 'UPDATE'); END IF; 
+END//
+
+DELIMITER ;
+```
+
+---
+
+## Contributors
+
+> David Lozada 

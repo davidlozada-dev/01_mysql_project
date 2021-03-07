@@ -371,7 +371,7 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE `show_employees_by_country`()
 BEGIN SELECT country_emp AS country, COUNT(ID_emp) AS numberOfEmployees FROM employees GROUP BY country_emp HAVING numberOfEmployees >= 5; END//
-DELIMITER ;
+DELIMITER ; 
 
 -- Dumping structure for table 01_mysql_project.suppliers
 CREATE TABLE IF NOT EXISTS `suppliers` (

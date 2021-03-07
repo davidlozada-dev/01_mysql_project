@@ -356,4 +356,4 @@ DELIMITER ;
 
 ## Contributors
 
-> David Lozada 
+Copyright © 2021 __David Lozada__

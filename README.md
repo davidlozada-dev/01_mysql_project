@@ -2,19 +2,19 @@
 
 ## Index
 
-1. Introduction
+1. [Introduction](#1-introduction)
 
-	1.Motivation behind the project
+	1.[Motivation behind the project](#11-Motivation-behind-the-project)
 
-	2.Database schemes
+	2.[Database schemes](#12-Database-schemes )
 
-1. Tecnhical aspects
+1. [Tecnhical aspects](#2-technical-aspects)
 
-	1.Stored procedures
+	1.[Stored procedures](#21-Stored-procedures)
 	
-	2.Triggers
+	2.[Triggers](#22-triggers)
 
-1. Contributors
+1. [Contributors](#Contributors)
 
 
 ## 1 Introduction

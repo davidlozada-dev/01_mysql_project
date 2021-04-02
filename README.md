@@ -28,12 +28,12 @@ In order to do that the whole project takes as requeriments the ones given by a 
 ##### Related tables
 The 1st scheme shows the tables that are in the database and how they are related to each other.
 	
-![01 scheme](https://raw.githubusercontent.com/davidlozada-dev/01_mysql_project/master/img/01_mysql_project_db_scheme_01.png)
+![01 scheme](https://raw.githubusercontent.com/davidlozada-dev/01_mysql_project/master/img/01_MySQL_Project_DB_Scheme_01.png)
 
 ##### Non-related tables
 The 2nd scheme shows the tables that are not related in the database, these tables are mostly used for backup and audit purposes.
 
-![02 scheme](https://raw.githubusercontent.com/davidlozada-dev/01_mysql_project/master/img/01_mysql_project_db_scheme_02.png)
+![02 scheme](https://raw.githubusercontent.com/davidlozada-dev/01_mysql_project/master/img/01_MySQL_Project_DB_Scheme_02.png)
 
 ## 2 Technical aspects
 

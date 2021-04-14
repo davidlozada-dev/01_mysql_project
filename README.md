@@ -8,7 +8,7 @@
 
 	2.[Database schemes](#12-Database-schemes )
 
-1. [Tecnhical aspects](#2-technical-aspects)
+1. [Technical aspects](#2-technical-aspects)
 
 	1.[Stored procedures](#21-Stored-procedures)
 	

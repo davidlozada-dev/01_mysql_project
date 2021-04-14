@@ -19,18 +19,18 @@
 
 ## 1 Introduction
 
-#### 1.1 Motivation behind the project
+### 1.1 Motivation behind the project
 
 The main purpose of the present project is to put into practice the knowledge about designing and creating a MySQL relational database.
 In order to do that the whole project takes as requeriments the ones given by a fictional company, which needs to keep track of the data that is inserted, updated and deleted from the regular entities present in database, as well as, it needs to put certain rules to keep the integrity of the data.
 
-#### 1.2 Database schemes 
-##### Related tables
+### 1.2 Database schemes 
+#### Related tables
 The 1st scheme shows the tables that are in the database and how they are related to each other.
 	
 ![01 scheme](https://raw.githubusercontent.com/davidlozada-dev/01_mysql_project/master/img/01_MySQL_Project_DB_Scheme_01.png)
 
-##### Non-related tables
+#### Non-related tables
 The 2nd scheme shows the tables that are not related in the database, these tables are mostly used for backup and audit purposes.
 
 ![02 scheme](https://raw.githubusercontent.com/davidlozada-dev/01_mysql_project/master/img/01_MySQL_Project_DB_Scheme_02.png)

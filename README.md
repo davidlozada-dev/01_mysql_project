@@ -18,7 +18,7 @@ __Project's status: *finished*__ :heavy_check_mark:
 	
 	2.[Triggers](#22-Triggers)
 
-1. [Contributors](#Contributors)
+1. [Contributor](#3-Contributor)
 
 
 ## 1 Introduction
@@ -380,6 +380,6 @@ DELIMITER ;
 
 ---
 
-## Contributors
+## 3 Contributor
 
 Copyright © 2021 __David Lozada__

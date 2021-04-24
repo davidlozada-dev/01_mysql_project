@@ -1,9 +1,11 @@
 # 01_mysql_project
 
+__Project's status: *finished*__ :heavy_check_mark:
+
 ## Index
 
 1. [Introduction](#1-Introduction)
-
+ 
 	1.[Motivation behind the project](#11-Motivation-behind-the-project)
 
 	2.[Naming convention](#12-Naming-convention)

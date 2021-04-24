@@ -32,7 +32,7 @@ In order to do that the whole project takes as requeriments the ones given by a 
 	
 	>E.g: *__users__*.
 
-1. The __column names__ are fully human-readable, in order to make that possible the names use camelCase naming practice followed by an underscore and then the first three letters of the table's name where each column belongs to. 
+1. The __column names__ are fully human-readable, in order to make that possible the names are in singular and use camelCase naming practice followed by an underscore and then the first three letters of the table's name where each column belongs to. 
 	
 	>E.g: *__userName_use__*. This is a column that belongs to a table called "users".
 

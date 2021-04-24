@@ -51,12 +51,15 @@ Also, after sketching all the relational database schemas with the designing too
 	>E.g.: *__ID_use__*. This is a primary key column that belongs to a table called "users".
 
 ### 1.3 Database schemas 
+
 #### Related tables
+
 The 1st schema shows the tables that are in the database and how they are related to each other.
 	
 ![01 schema](https://raw.githubusercontent.com/davidlozada-dev/01_mysql_project/master/img/01_mysql_project_db_schema_01.png)
 
 #### Non-related tables
+
 The 2nd schema shows the tables that are not related in the database, these tables are mostly used for backup and audit purposes.
 
 ![02 schema](https://raw.githubusercontent.com/davidlozada-dev/01_mysql_project/master/img/01_mysql_project_db_schema_02.png)

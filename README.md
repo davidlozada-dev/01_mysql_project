@@ -26,7 +26,7 @@ __Project's status: *finished*__ :heavy_check_mark:
 ### 1.1 Motivation behind the project
 
 The main purpose of the present project is to put into practice the knowledge about designing and creating a MySQL relational database.
-In order to do that the whole project takes as requeriments the ones given by a fictional company, which needs to keep track of the data that is inserted, updated and deleted from the regular entities present in database, as well as, it needs to put certain rules to keep the integrity of the data. Also, to make this development more interesting all the SQL statements are created and run in the __MySQL Command-Line__, and the resulting database is exported as a sql file with __HeidiSQL__.
+In order to do that the whole project takes as requeriments the ones given by a fictional company, which needs to keep track of the data that is inserted, updated and deleted from the regular entities present in database, as well as, it needs to put certain rules to keep the integrity of the data. Also, to make this development more interesting all the SQL statements are created and run in the __MySQL Command-Line__, and the resulting database is exported as a SQL file with __HeidiSQL__.
 
 #### Technologies/tools used for this project
 	
